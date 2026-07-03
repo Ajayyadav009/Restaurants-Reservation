@@ -18,7 +18,8 @@ const corsOptions = {
 
     
     if (process.env.NODE_ENV === "production") {
-      if (origin === process.env.CLIENT_URL) return callback(null, true);
+      const allowedOrigin = process.env.CLIENT_URL || "https://restaurants-reservation-1.onrender.com";
+      if (origin === allowedOrigin) return callback(null, true);
       return callback(new Error(`CORS: origin ${origin} not allowed`), false);
     }
 
