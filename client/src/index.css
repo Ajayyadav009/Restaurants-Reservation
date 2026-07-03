@@ -1,0 +1,861 @@
+/* ============================================================
+   Restaurant Reservation System — Global Styles
+   ============================================================ */
+
+/* --- Google Font --- */
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
+
+/* --- CSS Variables --- */
+:root {
+  --color-bg: #f8f9fa;
+  --color-surface: #ffffff;
+  --color-border: #dee2e6;
+  --color-text: #212529;
+  --color-text-muted: #6c757d;
+
+  --color-primary: #2c5282;
+  --color-primary-hover: #2a4a7f;
+  --color-primary-light: #ebf4ff;
+
+  --color-admin: #553c9a;
+  --color-admin-light: #f3ebff;
+  --color-admin-accent: #805ad5;
+
+  --color-success: #276749;
+  --color-success-bg: #f0fff4;
+  --color-success-border: #9ae6b4;
+
+  --color-danger: #c53030;
+  --color-danger-hover: #9b2c2c;
+  --color-danger-bg: #fff5f5;
+  --color-danger-border: #feb2b2;
+
+  --color-warning: #744210;
+  --color-warning-bg: #fffbeb;
+  --color-warning-border: #fcd34d;
+
+  --color-info-bg: #ebf8ff;
+  --color-info-border: #bee3f8;
+  --color-info-text: #2c5282;
+
+  --color-secondary: #4a5568;
+  --color-secondary-hover: #2d3748;
+
+  --radius: 6px;
+  --radius-lg: 10px;
+  --shadow-sm: 0 1px 3px rgba(0,0,0,0.08);
+  --shadow: 0 2px 8px rgba(0,0,0,0.10);
+  --shadow-lg: 0 4px 16px rgba(0,0,0,0.12);
+
+  --navbar-height: 60px;
+  --font: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+}
+
+/* --- Reset & Base --- */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+html { font-size: 16px; }
+
+body {
+  font-family: var(--font);
+  background: var(--color-bg);
+  color: var(--color-text);
+  line-height: 1.6;
+  min-height: 100vh;
+}
+
+a { color: inherit; text-decoration: none; }
+
+/* ============================================================
+   App Shell
+   ============================================================ */
+.app-shell { display: flex; flex-direction: column; min-height: 100vh; }
+.app-main { flex: 1; padding-top: var(--navbar-height); }
+
+/* ============================================================
+   Navbar
+   ============================================================ */
+.navbar {
+  position: fixed;
+  top: 0; left: 0; right: 0;
+  height: var(--navbar-height);
+  background: var(--color-surface);
+  border-bottom: 1px solid var(--color-border);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 1.5rem;
+  z-index: 100;
+  box-shadow: var(--shadow-sm);
+}
+
+.navbar-brand {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+.navbar-logo { font-size: 1.25rem; }
+.navbar-title {
+  font-size: 1.05rem;
+  font-weight: 700;
+  color: var(--color-primary);
+}
+.navbar-role-badge {
+  background: var(--color-admin);
+  color: #fff;
+  font-size: 0.7rem;
+  font-weight: 600;
+  padding: 2px 8px;
+  border-radius: 20px;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+}
+
+.navbar-links {
+  display: flex;
+  align-items: center;
+  gap: 0.25rem;
+}
+.navbar-link {
+  padding: 0.4rem 0.85rem;
+  border-radius: var(--radius);
+  font-size: 0.9rem;
+  font-weight: 500;
+  color: var(--color-text-muted);
+  transition: color 0.15s, background 0.15s;
+}
+.navbar-link:hover { color: var(--color-text); background: var(--color-bg); }
+.navbar-link.active { color: var(--color-primary); background: var(--color-primary-light); }
+
+.navbar-user {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+}
+.navbar-username {
+  font-size: 0.875rem;
+  color: var(--color-text-muted);
+}
+
+/* ============================================================
+   Buttons
+   ============================================================ */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.35rem;
+  padding: 0.5rem 1rem;
+  font-family: var(--font);
+  font-size: 0.9rem;
+  font-weight: 500;
+  border-radius: var(--radius);
+  border: 1.5px solid transparent;
+  cursor: pointer;
+  transition: background 0.15s, border-color 0.15s, color 0.15s, box-shadow 0.15s;
+  white-space: nowrap;
+}
+.btn:disabled { opacity: 0.55; cursor: not-allowed; }
+
+.btn-primary { background: var(--color-primary); color: #fff; border-color: var(--color-primary); }
+.btn-primary:hover:not(:disabled) { background: var(--color-primary-hover); }
+
+.btn-secondary { background: var(--color-secondary); color: #fff; border-color: var(--color-secondary); }
+.btn-secondary:hover:not(:disabled) { background: var(--color-secondary-hover); }
+
+.btn-danger { background: var(--color-danger); color: #fff; border-color: var(--color-danger); }
+.btn-danger:hover:not(:disabled) { background: var(--color-danger-hover); }
+
+.btn-success { background: var(--color-success); color: #fff; border-color: var(--color-success); }
+.btn-success:hover:not(:disabled) { filter: brightness(0.9); }
+
+.btn-outline {
+  background: transparent;
+  color: var(--color-text);
+  border-color: var(--color-border);
+}
+.btn-outline:hover:not(:disabled) { background: var(--color-bg); }
+
+.btn-sm { padding: 0.3rem 0.7rem; font-size: 0.825rem; }
+.btn-full { width: 100%; }
+
+/* ============================================================
+   Forms
+   ============================================================ */
+.form-group { display: flex; flex-direction: column; gap: 0.35rem; }
+.form-label { font-size: 0.875rem; font-weight: 600; color: var(--color-text); }
+.form-hint { font-size: 0.78rem; color: var(--color-text-muted); }
+.form-input {
+  padding: 0.5rem 0.75rem;
+  border: 1.5px solid var(--color-border);
+  border-radius: var(--radius);
+  font-family: var(--font);
+  font-size: 0.9rem;
+  color: var(--color-text);
+  background: var(--color-surface);
+  transition: border-color 0.15s, box-shadow 0.15s;
+  width: 100%;
+}
+.form-input:focus {
+  outline: none;
+  border-color: var(--color-primary);
+  box-shadow: 0 0 0 3px rgba(44,82,130,0.12);
+}
+.form-input:disabled { background: var(--color-bg); cursor: not-allowed; }
+.form-select { appearance: none; cursor: pointer; }
+.form-input-sm { padding: 0.25rem 0.5rem; font-size: 0.825rem; }
+
+/* ============================================================
+   Alerts
+   ============================================================ */
+.alert {
+  padding: 0.75rem 1rem;
+  border-radius: var(--radius);
+  font-size: 0.875rem;
+  border: 1px solid;
+  margin-bottom: 1rem;
+}
+.alert-error {
+  background: var(--color-danger-bg);
+  border-color: var(--color-danger-border);
+  color: var(--color-danger);
+}
+.alert-success {
+  background: var(--color-success-bg);
+  border-color: var(--color-success-border);
+  color: var(--color-success);
+}
+.alert-info {
+  background: var(--color-info-bg);
+  border-color: var(--color-info-border);
+  color: var(--color-info-text);
+}
+.error-list { padding-left: 1.25rem; }
+.error-list li { margin-bottom: 0.2rem; }
+
+/* ============================================================
+   Cards
+   ============================================================ */
+.card {
+  background: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-lg);
+  padding: 1.5rem;
+  box-shadow: var(--shadow-sm);
+}
+.card-title { font-size: 1rem; font-weight: 700; margin-bottom: 1rem; }
+.admin-card { border-left: 4px solid var(--color-admin); }
+
+/* ============================================================
+   Page Layout
+   ============================================================ */
+.page-container {
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 2rem 1.5rem;
+}
+.page-narrow { max-width: 680px; }
+
+.page-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 1.5rem;
+  flex-wrap: wrap;
+  gap: 1rem;
+}
+.page-title { font-size: 1.5rem; font-weight: 700; }
+.page-subtitle { color: var(--color-text-muted); font-size: 0.9rem; margin-top: 0.2rem; }
+
+.admin-page-header {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  margin-bottom: 1.5rem;
+  padding: 1.25rem 1.5rem;
+  background: var(--color-admin-light);
+  border-left: 5px solid var(--color-admin);
+  border-radius: var(--radius-lg);
+}
+.admin-title { color: var(--color-admin); }
+
+.results-count { font-size: 0.85rem; color: var(--color-text-muted); margin-bottom: 0.75rem; }
+
+/* ============================================================
+   Tables
+   ============================================================ */
+.table-container { overflow-x: auto; border-radius: var(--radius-lg); border: 1px solid var(--color-border); box-shadow: var(--shadow-sm); }
+
+.data-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 0.875rem;
+  background: var(--color-surface);
+}
+.data-table thead { background: #f1f5f9; }
+.data-table th {
+  padding: 0.75rem 1rem;
+  text-align: left;
+  font-weight: 600;
+  font-size: 0.8rem;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: var(--color-text-muted);
+  border-bottom: 1px solid var(--color-border);
+}
+.data-table td {
+  padding: 0.75rem 1rem;
+  border-bottom: 1px solid var(--color-border);
+  vertical-align: middle;
+}
+.data-table tbody tr:last-child td { border-bottom: none; }
+.data-table tbody tr:hover { background: #f8fafc; }
+.row-cancelled { opacity: 0.6; }
+.row-cancelled:hover { background: none !important; }
+
+/* ============================================================
+   Status Badges
+   ============================================================ */
+.status-badge {
+  display: inline-block;
+  padding: 0.2rem 0.6rem;
+  border-radius: 20px;
+  font-size: 0.75rem;
+  font-weight: 600;
+  text-transform: capitalize;
+}
+.status-confirmed { background: var(--color-success-bg); color: var(--color-success); border: 1px solid var(--color-success-border); }
+.status-cancelled { background: var(--color-danger-bg); color: var(--color-danger); border: 1px solid var(--color-danger-border); }
+
+.time-slot-badge {
+  display: inline-block;
+  padding: 0.15rem 0.5rem;
+  background: var(--color-primary-light);
+  color: var(--color-primary);
+  border-radius: var(--radius);
+  font-size: 0.8rem;
+  font-weight: 500;
+  font-variant-numeric: tabular-nums;
+}
+.capacity-hint { font-size: 0.78rem; color: var(--color-text-muted); }
+
+/* ============================================================
+   Action Buttons (inline)
+   ============================================================ */
+.action-btns { display: flex; gap: 0.5rem; align-items: center; }
+.inline-error { font-size: 0.78rem; color: var(--color-danger); }
+
+/* ============================================================
+   Auth Pages
+   ============================================================ */
+.auth-container {
+  min-height: calc(100vh - var(--navbar-height));
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 2rem 1rem;
+}
+.auth-card {
+  background: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-lg);
+  padding: 2.5rem;
+  width: 100%;
+  max-width: 420px;
+  box-shadow: var(--shadow-lg);
+}
+.auth-header { text-align: center; margin-bottom: 1.75rem; }
+.auth-logo { font-size: 2.5rem; display: block; margin-bottom: 0.5rem; }
+.auth-title { font-size: 1.4rem; font-weight: 700; }
+.auth-subtitle { color: var(--color-text-muted); font-size: 0.9rem; margin-top: 0.25rem; }
+.auth-form { display: flex; flex-direction: column; gap: 1rem; }
+.auth-footer { text-align: center; font-size: 0.875rem; color: var(--color-text-muted); margin-top: 1.25rem; }
+.auth-link { color: var(--color-primary); font-weight: 600; }
+.auth-link:hover { text-decoration: underline; }
+
+/* ============================================================
+   Reservation Form
+   ============================================================ */
+.reservation-form { display: flex; flex-direction: column; gap: 1.5rem; }
+.form-section { display: flex; flex-direction: column; gap: 0.75rem; }
+.form-section-title { font-size: 0.9rem; font-weight: 700; color: var(--color-text-muted); text-transform: uppercase; letter-spacing: 0.05em; }
+.form-actions { padding-top: 0.5rem; }
+.selection-summary { margin-top: 0.5rem; }
+
+/* Table selection grid */
+.table-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(130px, 1fr));
+  gap: 0.75rem;
+}
+.table-card {
+  display: block;
+  border: 2px solid var(--color-border);
+  border-radius: var(--radius);
+  cursor: pointer;
+  transition: border-color 0.15s, box-shadow 0.15s, background 0.15s;
+  background: var(--color-surface);
+}
+.table-card:hover:not(.table-card-unavailable) { border-color: var(--color-primary); box-shadow: 0 0 0 3px var(--color-primary-light); }
+.table-card-selected { border-color: var(--color-primary); background: var(--color-primary-light); box-shadow: 0 0 0 3px var(--color-primary-light); }
+.table-card-unavailable { opacity: 0.5; cursor: not-allowed; }
+.table-radio { position: absolute; opacity: 0; width: 0; height: 0; }
+.table-card-content { padding: 0.75rem; display: flex; flex-direction: column; gap: 0.25rem; pointer-events: none; }
+.table-number { font-weight: 700; font-size: 0.9rem; }
+.table-capacity { font-size: 0.78rem; color: var(--color-text-muted); }
+.table-status-label { font-size: 0.7rem; font-weight: 600; padding: 2px 6px; border-radius: 20px; align-self: flex-start; }
+.table-available { background: var(--color-success-bg); color: var(--color-success); }
+.table-booked { background: var(--color-danger-bg); color: var(--color-danger); }
+.table-too-small { background: var(--color-warning-bg); color: var(--color-warning); }
+
+/* ============================================================
+   Customer cells
+   ============================================================ */
+.customer-cell { display: flex; flex-direction: column; gap: 0.15rem; }
+.customer-name { font-weight: 600; }
+.customer-email { font-size: 0.78rem; color: var(--color-text-muted); }
+
+/* ============================================================
+   Filters
+   ============================================================ */
+.filter-bar {
+  display: flex;
+  gap: 1rem;
+  align-items: flex-end;
+  flex-wrap: wrap;
+  margin-bottom: 1.25rem;
+  padding: 1rem 1.25rem;
+  background: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-lg);
+}
+.filter-group { display: flex; flex-direction: column; gap: 0.35rem; }
+.filter-input { min-width: 180px; }
+.filter-clear { align-self: flex-end; margin-top: auto; }
+
+/* ============================================================
+   Inline form (Add Table)
+   ============================================================ */
+.inline-form {
+  display: flex;
+  gap: 1rem;
+  align-items: flex-end;
+  flex-wrap: wrap;
+}
+.inline-form .form-group { flex: 1; min-width: 140px; }
+.inline-form .btn { flex-shrink: 0; margin-top: 1.5rem; }
+
+/* ============================================================
+   Modal
+   ============================================================ */
+.modal-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,0.4);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 200;
+  padding: 1rem;
+}
+.modal-box {
+  background: var(--color-surface);
+  border-radius: var(--radius-lg);
+  width: 100%;
+  max-width: 480px;
+  box-shadow: var(--shadow-lg);
+  overflow: hidden;
+}
+.modal-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 1.25rem 1.5rem;
+  border-bottom: 1px solid var(--color-border);
+}
+.modal-title { font-size: 1.05rem; font-weight: 700; }
+.modal-close {
+  background: none;
+  border: none;
+  font-size: 1.4rem;
+  cursor: pointer;
+  color: var(--color-text-muted);
+  line-height: 1;
+  padding: 0 0.25rem;
+}
+.modal-close:hover { color: var(--color-text); }
+.modal-box .reservation-form { padding: 1.5rem; }
+.modal-actions {
+  display: flex;
+  justify-content: flex-end;
+  gap: 0.75rem;
+  padding-top: 0.5rem;
+}
+
+/* ============================================================
+   State helpers
+   ============================================================ */
+.loading-state {
+  text-align: center;
+  padding: 3rem;
+  color: var(--color-text-muted);
+  font-size: 0.9rem;
+}
+.empty-state {
+  text-align: center;
+  padding: 3rem 2rem;
+  color: var(--color-text-muted);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1rem;
+}
+.error-page { text-align: center; padding: 4rem 2rem; }
+.error-page h1 { font-size: 1.75rem; margin-bottom: 0.75rem; }
+.text-muted { color: var(--color-text-muted); }
+
+/* ============================================================
+   Responsive
+   ============================================================ */
+@media (max-width: 640px) {
+  .navbar { padding: 0 1rem; }
+  .navbar-title { font-size: 0.95rem; }
+  .page-container { padding: 1.25rem 1rem; }
+  .auth-card { padding: 1.75rem 1.25rem; }
+  .inline-form { flex-direction: column; }
+  .inline-form .btn { margin-top: 0; width: 100%; }
+  .filter-bar { flex-direction: column; }
+  .filter-input { min-width: unset; width: 100%; }
+}
+
+/* ============================================================
+   Admin Button Variant
+   ============================================================ */
+.btn-admin {
+  background: var(--color-admin);
+  color: #fff;
+  border-color: var(--color-admin);
+}
+.btn-admin:hover:not(:disabled) {
+  background: #44307a;
+  border-color: #44307a;
+}
+
+/* ============================================================
+   Admin Sidebar Shell
+   -- Completely replaces the top-navbar layout for admin pages.
+   -- Customers never see this layout.
+   ============================================================ */
+
+/* Admin sidebar variables */
+:root {
+  --sidebar-width: 260px;
+  --sidebar-bg: #1a1f2e;
+  --sidebar-border: #2d3348;
+  --sidebar-text: #a0aec0;
+  --sidebar-text-hover: #e2e8f0;
+  --sidebar-active-bg: rgba(128, 90, 213, 0.18);
+  --sidebar-active-text: #b794f4;
+  --sidebar-active-border: #805ad5;
+  --admin-topbar-height: 58px;
+}
+
+/* Outer shell — sidebar + content side by side, full viewport */
+.admin-shell {
+  display: flex;
+  min-height: 100vh;
+  background: #f0f2f8;
+}
+
+/* ── Sidebar ── */
+.admin-sidebar {
+  width: var(--sidebar-width);
+  min-height: 100vh;
+  background: var(--sidebar-bg);
+  border-right: 1px solid var(--sidebar-border);
+  display: flex;
+  flex-direction: column;
+  position: fixed;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  z-index: 50;
+  overflow-y: auto;
+}
+
+.sidebar-header {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  padding: 1.5rem 1.25rem 1.25rem;
+  border-bottom: 1px solid var(--sidebar-border);
+}
+.sidebar-logo { font-size: 1.75rem; }
+.sidebar-brand {
+  font-size: 1rem;
+  font-weight: 700;
+  color: #e2e8f0;
+  line-height: 1.2;
+}
+.sidebar-role-tag {
+  display: inline-block;
+  margin-top: 3px;
+  background: var(--color-admin);
+  color: #fff;
+  font-size: 0.65rem;
+  font-weight: 700;
+  padding: 2px 7px;
+  border-radius: 20px;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+}
+
+.sidebar-nav {
+  flex: 1;
+  padding: 1rem 0.75rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+}
+
+.sidebar-link {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  padding: 0.65rem 0.9rem;
+  border-radius: var(--radius);
+  color: var(--sidebar-text);
+  font-size: 0.9rem;
+  font-weight: 500;
+  text-decoration: none;
+  transition: background 0.15s, color 0.15s, border-left 0.15s;
+  border-left: 3px solid transparent;
+}
+.sidebar-link:hover {
+  background: rgba(255,255,255,0.06);
+  color: var(--sidebar-text-hover);
+}
+.sidebar-link-active {
+  background: var(--sidebar-active-bg);
+  color: var(--sidebar-active-text);
+  border-left-color: var(--sidebar-active-border);
+  font-weight: 600;
+}
+
+.sidebar-icon { font-size: 1rem; width: 1.2rem; text-align: center; }
+
+.sidebar-footer {
+  padding: 1rem 0.75rem;
+  border-top: 1px solid var(--sidebar-border);
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+.sidebar-user {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  padding: 0.5rem 0.4rem;
+}
+.sidebar-avatar {
+  width: 34px;
+  height: 34px;
+  border-radius: 50%;
+  background: var(--color-admin);
+  color: #fff;
+  font-size: 0.9rem;
+  font-weight: 700;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+.sidebar-user-info { overflow: hidden; }
+.sidebar-user-name {
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: #e2e8f0;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.sidebar-user-email {
+  font-size: 0.72rem;
+  color: var(--sidebar-text);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.sidebar-logout-btn {
+  width: 100%;
+  padding: 0.55rem 0.9rem;
+  background: rgba(255,255,255,0.05);
+  color: var(--sidebar-text);
+  border: 1px solid var(--sidebar-border);
+  border-radius: var(--radius);
+  font-family: var(--font);
+  font-size: 0.85rem;
+  font-weight: 500;
+  cursor: pointer;
+  text-align: left;
+  transition: background 0.15s, color 0.15s;
+}
+.sidebar-logout-btn:hover {
+  background: rgba(197, 48, 48, 0.2);
+  color: #fc8181;
+  border-color: rgba(197, 48, 48, 0.3);
+}
+
+/* ── Admin content area ── */
+.admin-content {
+  margin-left: var(--sidebar-width);
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
+/* Top bar inside the admin content */
+.admin-topbar {
+  height: var(--admin-topbar-height);
+  background: #fff;
+  border-bottom: 1px solid var(--color-border);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 1.75rem;
+  box-shadow: var(--shadow-sm);
+  position: sticky;
+  top: 0;
+  z-index: 10;
+}
+.admin-topbar-title {
+  font-size: 1.05rem;
+  font-weight: 700;
+  color: var(--color-text);
+}
+.admin-topbar-right { display: flex; align-items: center; gap: 1rem; }
+.admin-badge {
+  background: var(--color-admin-light);
+  color: var(--color-admin);
+  border: 1px solid #c4b5fd;
+  font-size: 0.78rem;
+  font-weight: 600;
+  padding: 0.25rem 0.75rem;
+  border-radius: 20px;
+}
+
+.admin-main {
+  flex: 1;
+  padding: 1.75rem;
+  background: #f0f2f8;
+}
+
+/* Override page-container inside admin so it doesn't have double padding */
+.admin-main .page-container {
+  max-width: 100%;
+  padding: 0;
+}
+
+/* Override admin-page-header inside admin-main (no extra margin needed) */
+.admin-main .admin-page-header {
+  margin-bottom: 1.25rem;
+}
+
+/* ============================================================
+   Admin Auth Page  (RegisterAdmin)
+   ============================================================ */
+.admin-auth-container .auth-card {
+  border-top: 4px solid var(--color-admin);
+}
+.admin-auth-card {
+  max-width: 460px;
+}
+.admin-auth-banner {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  background: var(--color-admin-light);
+  border: 1px solid #c4b5fd;
+  border-radius: var(--radius);
+  padding: 0.5rem 1rem;
+  margin-bottom: 1.25rem;
+}
+.admin-auth-icon { font-size: 1.1rem; }
+.admin-auth-label {
+  font-size: 0.8rem;
+  font-weight: 700;
+  color: var(--color-admin);
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+}
+
+/* Input with show/hide toggle */
+.input-with-toggle {
+  position: relative;
+  display: flex;
+}
+.input-with-toggle .form-input {
+  padding-right: 2.5rem;
+}
+.input-toggle-btn {
+  position: absolute;
+  right: 0.5rem;
+  top: 50%;
+  transform: translateY(-50%);
+  background: none;
+  border: none;
+  cursor: pointer;
+  font-size: 1rem;
+  line-height: 1;
+  padding: 0.2rem;
+}
+
+.admin-auth-divider {
+  text-align: center;
+  font-size: 0.8rem;
+  color: var(--color-text-muted);
+  margin: 1rem 0 0.5rem;
+  position: relative;
+}
+.admin-auth-divider::before,
+.admin-auth-divider::after {
+  content: "";
+  position: absolute;
+  top: 50%;
+  width: 35%;
+  height: 1px;
+  background: var(--color-border);
+}
+.admin-auth-divider::before { left: 0; }
+.admin-auth-divider::after { right: 0; }
+
+/* ============================================================
+   Admin Responsive
+   ============================================================ */
+@media (max-width: 768px) {
+  .admin-sidebar {
+    width: 200px;
+  }
+  .admin-content {
+    margin-left: 200px;
+  }
+}
+
+@media (max-width: 560px) {
+  .admin-sidebar {
+    position: relative;
+    width: 100%;
+    min-height: auto;
+  }
+  .admin-shell {
+    flex-direction: column;
+  }
+  .admin-content {
+    margin-left: 0;
+  }
+}
+
