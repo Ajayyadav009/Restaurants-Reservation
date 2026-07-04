@@ -13,18 +13,15 @@ const app = express();
 
 const corsOptions = {
   origin: (origin, callback) => {
-    
     if (!origin) return callback(null, true);
 
+    const allowedOrigin = process.env.CLIENT_URL || "https://restaurants-reservation-1.onrender.com";
     
-    if (process.env.NODE_ENV === "production") {
-      const allowedOrigin = process.env.CLIENT_URL || "https://restaurants-reservation-1.onrender.com";
-      if (origin === allowedOrigin) return callback(null, true);
-      return callback(new Error(`CORS: origin ${origin} not allowed`), false);
-    }
+    const isAllowed = origin === allowedOrigin || 
+                      /^http:\/\/localhost(:\d+)?$/.test(origin) ||
+                      /\.onrender\.com$/.test(origin);
 
-    
-    if (/^http:\/\/localhost(:\d+)?$/.test(origin)) {
+    if (isAllowed) {
       return callback(null, true);
     }
 
