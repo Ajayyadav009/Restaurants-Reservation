@@ -46,6 +46,16 @@ app.use("/api/reservations", reservationRoutes);
 app.use("/api/admin", adminRoutes);
 
 
+// Serve static assets in production
+const path = require("path");
+if (process.env.NODE_ENV === "production") {
+  app.use(express.static(path.join(__dirname, "../../client/dist")));
+  
+  app.get(/^\/(?!api).*/, (req, res) => {
+    res.sendFile(path.join(__dirname, "../../client/dist/index.html"));
+  });
+}
+
 app.use((req, res) => {
   res.status(404).json({ success: false, message: `Route ${req.method} ${req.path} not found` });
 });
